@@ -148,3 +148,21 @@ h1, h2, h3, .hero h1, .plan h2, .notes h2, .overview-heading h2,
   .picks-stats { grid-template-columns: minmax(0, 1fr); }
   .tech-matrix th, .tech-matrix td { padding: 9px 8px; }
 }
+
+.travel-badge {
+  display: inline-block;
+  width: fit-content;
+  margin-top: 4px;
+  padding: 2px 8px;
+  border: 1px solid currentColor;
+  border-radius: 99px;
+  font-size: .78rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+.travel-badge--travelled { color: #255c46; background: #ecf6ef; }
+.travel-badge--upcoming { color: #1c537c; background: #edf6ff; }
+.travel-badge--planning { color: #794416; background: #fff4e3; }
+.trip-entry .travel-badge { display: inline-block; }
+.upcoming-links { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.journal-header nav a[aria-current="page"] { text-decoration: underline; text-underline-offset: .25em; }
