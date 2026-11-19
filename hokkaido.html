@@ -11,13 +11,16 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700&family=Noto+Serif+TC:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="hokkaido.css">
   <script src="script.js" defer></script>
-<link rel="stylesheet" href="masthead.css"><meta name="author" content="George"><style>.journal-header .brand{display:inline-flex;align-items:center;gap:9px;flex-wrap:wrap}.journal-header .brand strong{font:bold clamp(18px,3vw,29px)/1.15 serif;letter-spacing:-.06em}.journal-header .brand i{font:italic 15px/1 Georgia,serif;color:#983d29}@media(max-width:600px){.journal-header .brand{flex-direction:column;align-items:flex-start;gap:3px}.journal-header .brand i{font-size:13px}}</style></head>
+<link rel="stylesheet" href="masthead.css"><meta name="author" content="George">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+HK:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="travel-system.css">
+</head>
 <body id="top">
   <a class="skip-link" href="#hokkaido">跳至北海道行程</a>
   <header class="journal-header">
     <div class="frame masthead">
-      <a class="brand" href="./"><strong>下一站，出走。</strong> <i lang="en">Next Stop by George</i></a>
-      <nav aria-label="主選單"><span aria-hidden="true">🇯🇵</span><a href="./#destinations">目的地</a><a href="./#next">下一站</a></nav>
+      <a class="brand" href="./"><strong>下一站，出走。</strong> <span lang="en">Next Stop by George</span></a>
+      <nav aria-label="主選單"><span aria-hidden="true">🇯🇵</span><a href="./#destinations">目的地</a><a href="./#next">下一站</a><a href="./#tech-matrix">旅遊科技</a></nav>
     </div>
   </header>
 
@@ -38,11 +41,13 @@
       </div>
     </section>
 
-    <nav class="section-nav" aria-label="北海道行程目錄">
-      <div class="wrap nav-inner">
-        <a href="#stays">航班住宿</a><a href="#itinerary">每日行程</a><a href="#transport">接駁交通</a><a href="#checklist">出發清單</a>
-      </div>
-    </nav>
+    <div class="trip-shell">
+  <nav class="trip-index" aria-label="行程目錄"><a href="#trip-brief">旅程一覽</a><a href="#stays">航班・住宿</a><a href="#itinerary">每日行程</a><a href="#trip-picks">精選筆記</a><a href="#travel-tech">旅遊科技</a></nav>
+  <section class="trip-brief" id="trip-brief" aria-labelledby="brief-heading">
+    <div class="brief-heading"><div><p class="matrix-label" lang="en">TRIP OVERVIEW</p><h2 id="brief-heading">旅程一覽</h2></div><p class="george-byline"><span>G</span><b lang="en">George</b><small>香港出發 · 行程整理</small></p></div>
+    <dl class="trip-stats"><div><dt>行程日子</dt><dd>2026.11.29–12.06</dd></div><div><dt>旅程長度</dt><dd>8 日 7 夜</dd></div><div><dt>路線</dt><dd>札幌 → Kiroro → 小樽</dd></div><div><dt>進度</dt><dd>行程已整理</dd></div></dl>
+  </section>
+</div>
 
     <section class="wrap section" id="stays" aria-labelledby="stays-title">
       <div class="section-heading">
@@ -124,6 +129,10 @@
       </div>
     </section>
 
+    <section class="trip-module trip-shell" id="trip-picks" aria-labelledby="picks-heading">
+  <p class="matrix-label" lang="en">GEORGE’S PICKS</p><h2 id="picks-heading">精選筆記</h2>
+  <dl class="trip-stats picks-stats"><div><dt>景點</dt><dd>札幌大通公園燈飾、Kiroro 雪場、小樽運河。</dd></div><div><dt>食嘢</dt><dd>札幌湯咖喱、二條市場海鮮。</dd></div><div><dt>交通</dt><dd>入山同離開 Kiroro 嘅接駁要分開確認。 <a href="#transport">睇詳情</a></dd></div></dl>
+</section>
     <section class="wrap section" id="transport" aria-labelledby="transport-title">
       <div class="section-heading">
         <div><p class="kicker">GETTING AROUND</p><h2 id="transport-title">接駁交通</h2></div>
@@ -150,6 +159,11 @@
       </div>
     </section>
 
+    <section class="trip-module trip-shell" id="travel-tech" aria-labelledby="tech-heading">
+  <p class="matrix-label" lang="en">TRAVEL TECH</p><h2 id="tech-heading">旅遊科技</h2>
+  <dl class="trip-stats tech-stats"><div><dt>出發前</dt><dd>訂好雪場接駁，核對兩程集合點。<p><a href="#transport">睇接駁詳情</a></p></dd></div><div><dt>落地上網</dt><dd>設定漫遊或 eSIM，出機場前試一次上網。</dd></div><div><dt>市內移動</dt><dd>用 JR 官方資料查車，入山前睇雪道同纜車狀況。<p><a href="https://www.kiroro.co.jp/">Kiroro 雪場</a></p></dd></div><div><dt>離線備用</dt><dd>將接駁確認、酒店地址同集合點截圖存低。<p><a href="#checklist">睇出發清單</a></p></dd></div></dl>
+  <p class="matrix-crosslink"><a href="./#tech-matrix">比較各地旅遊科技</a></p>
+</section>
     <section class="wrap section trip-archive" aria-labelledby="archive-title">
       <div class="section-heading"><div><p class="kicker">TRIP ARCHIVE</p><h2 id="archive-title">過往旅程</h2></div></div>
       <div class="archive-grid">
@@ -158,8 +172,10 @@
       </div>
     </section>
   </main>
-  <footer class="site-footer">
-    <div class="wrap"><span>下一站，出走。 · Built by George</span><small>相片：<a href="https://commons.wikimedia.org/wiki/File:Otaru_Canal_Dusk.jpg">Komatta / Wikimedia Commons</a> · <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>（縮放及裁切顯示）</small><a href="#top">回到頁首 ↑</a></div>
-  </footer>
+  <footer class="george-footer"><div class="trip-shell footer-inner">
+      <a class="footer-brand" href="./">下一站，出走。<span lang="en">Built by George</span></a>
+      <small>相片：<a href="https://commons.wikimedia.org/wiki/File:Otaru_Canal_Dusk.jpg">Komatta / Wikimedia Commons</a> · <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>（縮放及裁切顯示）</small>
+      <a href="#top">返頁頂</a>
+    </div></footer>
 </body>
 </html>
