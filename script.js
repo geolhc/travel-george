@@ -1,58 +1,49 @@
-document.querySelectorAll('.day button').forEach(button => {
-  button.addEventListener('click', () => {
-    const item = button.closest('.day');
-    const isOpen = item.classList.contains('active');
-    document.querySelectorAll('.day').forEach(day => { day.classList.remove('active'); day.querySelector('button').setAttribute('aria-expanded', 'false'); });
-    if (!isOpen) { item.classList.add('active'); button.setAttribute('aria-expanded', 'true'); }
-  });
-});
+const archiveSections = new Set(["japan", "tokyo", "tokyo-trip", "overview", "plan", "notes", "vietnam"]);
 
-const destinationButtons = document.querySelectorAll('[data-destination-target]');
-const destinationViews = document.querySelectorAll('[data-destination]');
-const cityButtons = document.querySelectorAll('[data-city-target]');
-const cityViews = document.querySelectorAll('[data-city]');
-
-function showCity(city) {
-  cityViews.forEach(view => {
-    const isSelected = view.dataset.city === city;
-    view.hidden = !isSelected;
-    view.classList.toggle('active', isSelected);
-  });
-  cityButtons.forEach(button => {
-    const isSelected = button.dataset.cityTarget === city;
-    button.classList.toggle('active', isSelected);
-    button.setAttribute('aria-selected', String(isSelected));
-  });
+if (document.getElementById("hokkaido") && archiveSections.has(location.hash.slice(1))) {
+  const archive = new URL("archive.html", location.href);
+  archive.hash = location.hash;
+  location.replace(archive);
 }
 
-function showDestination(destination) {
-  destinationViews.forEach(view => {
-    const isSelected = view.dataset.destination === destination;
-    view.hidden = !isSelected;
-    view.classList.toggle('active', isSelected);
+const legacyDays = document.querySelectorAll(".day button");
+legacyDays.forEach(button => {
+  button.addEventListener("click", () => {
+    const isOpen = button.getAttribute("aria-expanded") === "true";
+    legacyDays.forEach(dayButton => {
+      const shouldOpen = button === dayButton && !isOpen;
+      dayButton.closest(".day").classList.toggle("active", shouldOpen);
+      dayButton.setAttribute("aria-expanded", String(shouldOpen));
+    });
   });
-  destinationButtons.forEach(button => {
-    const isSelected = button.dataset.destinationTarget === destination;
-    button.classList.toggle('active', isSelected);
-    if (button.matches('[role="tab"]')) button.setAttribute('aria-selected', String(isSelected));
-  });
-  if (destination === 'japan') showCity('tokyo');
+});
+
+const checklist = [...document.querySelectorAll("[data-checklist-key]")];
+const progress = document.querySelector("[data-checklist-progress]");
+
+function updateProgress() {
+  if (!progress) return;
+  const checked = checklist.filter(item => item.checked).length;
+  progress.textContent = `${checked} / ${checklist.length} 項完成`;
+  progress.hidden = false;
 }
 
-destinationButtons.forEach(button => {
-  button.addEventListener('click', event => {
-    const destination = button.dataset.destinationTarget;
-    showDestination(destination);
-    if (button.matches('[role="tab"]')) event.preventDefault();
-  });
-});
-
-cityButtons.forEach(button => {
-  button.addEventListener('click', () => showCity(button.dataset.cityTarget));
-});
-
-document.querySelectorAll('[data-checklist-key]').forEach(item => {
+checklist.forEach(item => {
   const key = `travel-hub-${item.dataset.checklistKey}`;
-  item.checked = localStorage.getItem(key) === 'true';
-  item.addEventListener('change', () => localStorage.setItem(key, String(item.checked)));
+  try {
+    item.checked = localStorage.getItem(key) === "true";
+  } catch {
+    // The checklist still works for this visit when storage is unavailable.
+  }
+
+  item.addEventListener("change", () => {
+    try {
+      localStorage.setItem(key, String(item.checked));
+    } catch {
+      // Keep the current check state so the checklist remains usable.
+    }
+    updateProgress();
+  });
 });
+
+updateProgress();
