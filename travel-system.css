@@ -166,3 +166,72 @@ h1, h2, h3, .hero h1, .plan h2, .notes h2, .overview-heading h2,
 .trip-entry .travel-badge { display: inline-block; }
 .upcoming-links { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 .journal-header nav a[aria-current="page"] { text-decoration: underline; text-underline-offset: .25em; }
+
+/* Editorial edition */
+:root {
+  --edition-paper: #f8f5ec;
+  --edition-forest: #193c32;
+  --edition-ink: #262d29;
+  --edition-rust: #97462d;
+  --edition-line: #c9cbbf;
+  --edition-serif: "Instrument Serif", "Noto Serif HK", Georgia, serif;
+  --serif: var(--edition-serif);
+  --display: var(--edition-serif);
+  --trip-green: var(--edition-forest);
+  --trip-panel: #faf8f1;
+  --trip-line: var(--edition-line);
+}
+body { background-color: var(--edition-paper); }
+.journal-header { background: var(--edition-paper); border-bottom: 1px solid var(--edition-line); color: var(--edition-ink); }
+.journal-header .brand strong, .cover h1, .hero h1, .hero-text h1, .article-title,
+.section-top h2, .dispatch h2, .next-stop h2, .trip-module h2, .tech-matrix h2,
+.trip-brief h2, .plan h2, .notes h2, .overview-heading h2, .country-title h3 {
+  font-family: var(--edition-serif);
+  font-weight: 600;
+}
+.journal-header nav a { min-height: 44px; text-underline-offset: .35em; }
+.journal-header nav a:hover, .trip-index a:hover { color: var(--edition-rust); }
+.cover { border: 0; background: var(--edition-forest); color: #fffdf4; }
+.cover .cover-copy { padding: clamp(25px, 4.6vw, 68px); }
+.cover .eyebrow, .cover-route span { color: #f0b79b; }
+.cover-english { color: #e2d4bc; font-family: var(--edition-serif); font-style: italic; }
+.cover-deck, .cover-actions > span { color: #e3e7d8; }
+.cover-actions .button { background: #f7eedc; border-color: #f7eedc; color: var(--edition-forest); }
+.cover-photo figcaption { font-family: var(--trip-mono); background: var(--edition-forest); }
+.country-grid { gap: clamp(12px, 2vw, 26px); }
+.country-grid .country { padding: 0 0 12px; border: 0; border-bottom: 1px solid var(--edition-line); background: transparent; }
+.country-art { aspect-ratio: 2.45; position: relative; overflow: hidden; isolation: isolate; background-color: var(--edition-forest); }
+.country-art img { width: 100%; height: 100%; object-fit: cover; object-position: center 60%; }
+.country-art span { position: absolute; left: 10px; bottom: 8px; padding: 2px 7px; background: #193c32; color: white; font-size: .79rem; }
+.art-korea { background: radial-gradient(circle at 73% 29%, #f5d0a3 0 8%, transparent 8.5%), linear-gradient(155deg, transparent 0 49%, #547b67 49.5% 64%, transparent 64.5%), linear-gradient(25deg, transparent 0 35%, #335c50 35.5% 57%, transparent 57.5%), linear-gradient(#e2d8bc 0 63%, #849e88 63% 76%, #476a66 76%); }
+.country-title { padding-block: 13px 4px; }
+.country-title > span { font-family: var(--edition-serif); font-style: italic; color: var(--edition-rust); }
+.trip-entry { min-height: 76px; }
+.trip-entry:hover, .trip-entry:focus-visible { background-color: #eeeade; }
+.link-mark { color: var(--edition-rust); }
+.trip-brief, .trip-module, .tech-matrix { border-top-width: 2px; }
+.trip-stats > div { background: #fffdf8; }
+.day-list, .days { border-left: 1px solid #a5afa1; padding-left: 14px; }
+.day-list > details, .days > .day { position: relative; }
+.day-list > details::before, .days > .day::before { content: ""; position: absolute; left: -19px; top: 20px; width: 7px; height: 7px; border-radius: 50%; background: var(--edition-rust); }
+.day-list summary, .days button { min-height: 48px; }
+.george-footer { background: var(--edition-forest); }
+:focus-visible { outline: 3px solid #b76b45; outline-offset: 3px; }
+@media (max-width: 700px) {
+  .journal-header .masthead { display: block; padding: 11px 0 0; }
+  .journal-header .masthead nav { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 0; width: 100%; margin-top: 8px; border-top: 1px solid var(--edition-line); }
+  .journal-header .masthead nav a { justify-content: center; min-height: 46px; font-size: .84rem; white-space: nowrap; }
+  .country-art { aspect-ratio: 2.8; }
+  .trip-index a { display: inline-flex; align-items: center; min-height: 44px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .country-art img, .button, .trip-entry { transition: transform .22s ease, background-color .22s ease; }
+  @media (hover: hover) {
+    .country:hover .country-art img { transform: scale(1.035); }
+    .button:hover { transform: translateY(-2px); }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: 0s !important; animation-duration: 0s !important; }
+}
