@@ -6,18 +6,6 @@ if (document.getElementById("hokkaido") && archiveSections.has(location.hash.sli
   location.replace(archive);
 }
 
-const legacyDays = document.querySelectorAll(".day button");
-legacyDays.forEach(button => {
-  button.addEventListener("click", () => {
-    const isOpen = button.getAttribute("aria-expanded") === "true";
-    legacyDays.forEach(dayButton => {
-      const shouldOpen = button === dayButton && !isOpen;
-      dayButton.closest(".day").classList.toggle("active", shouldOpen);
-      dayButton.setAttribute("aria-expanded", String(shouldOpen));
-    });
-  });
-});
-
 const checklist = [...document.querySelectorAll("[data-checklist-key]")];
 const progress = document.querySelector("[data-checklist-progress]");
 
