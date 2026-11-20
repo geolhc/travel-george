@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const path = require('node:path');
 
 (async () => {
-  const browser = await chromium.launch();
+  const browser = await chromium.launch({ channel: 'chrome' });
   const pages = ['index.html', 'archive.html', 'hokkaido.html', 'da-nang-hoi-an.html', 'jeju.html'];
   try {
     for (const width of [375, 430, 768, 1440]) {
