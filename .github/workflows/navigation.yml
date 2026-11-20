@@ -1,0 +1,26 @@
+name: Navigation browser checks
+on:
+  pull_request:
+    paths:
+      - '*.html'
+      - '*.css'
+      - '*.js'
+      - '.github/tests/navigation.cjs'
+      - '.github/workflows/navigation.yml'
+permissions:
+  contents: read
+jobs:
+  chromium:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install isolated browser test dependency
+        run: |
+          npm install --prefix "$RUNNER_TEMP/nav-test" --no-audit --no-fund playwright@1.56.1
+      - name: Exercise site navigation
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 --directory .. &
+          server=$!
+          trap 'kill "$server"' EXIT
+          NODE_PATH="$RUNNER_TEMP/nav-test/node_modules" node .github/tests/navigation.cjs
